@@ -1,6 +1,6 @@
 ## End-to-end Speech Recognition and Disfluency Removal
 
-Evaluation code for joint ASR and disfluency removal based on [End-to-End Speech Recognition and Disfluency Removal](https://arxiv.org/abs/1808.09091) from EMNLP 2020.
+Evaluation code for joint ASR and disfluency removal based on [End-to-End Speech Recognition and Disfluency Removal](https://arxiv.org/pdf/2009.10298.pdf) from EMNLP 2020.
 
 ### Abstract
 
@@ -39,7 +39,7 @@ Consider the following example! Align 1 represents the alignment between the out
 
 ### Align and Score
 
-The format of files passed to `--ref` and `--hyp` should be one sentence per line. All words in reference and hypothesis files should be in lowercase, except for gold disfluent words in reference which are presented in uppercase letters. 
+The format of files passed to `--ref` and `--hyp` should be one sentence per line. All words in reference and hypothesis files should be in lowercase, except for gold disfluent words in reference which are presented in uppercase letters. Check *ref* and *hyp* lists in `aligner.py` to see the expected format.
 
 To align the reference and hypothesis transcripts and calculate WER using a standard ASR alginment algorithm:
 ```
@@ -60,16 +60,12 @@ $ python3 main.py --mode test
 
 If you use the code, please cite the following paper:
 ```
-@inproceedings{jamshid-lou-2020-improving,
+@inproceedings{jamshid-lou-2020-end-to-end,
     title = "End-to-End Speech Recognition and Disfluency Removal",
     author = "Jamshid Lou, Paria and Johnson, Mark",
-    booktitle = "Proceedings of the 58th Annual Meeting of the Association for Computational Linguistics",
-    month = "jul",
+    booktitle = "arxiv",
     year = "2020",
-    address = "Online",
-    publisher = "Association for Computational Linguistics",
-    url = "https://www.aclweb.org/anthology/2020.acl-main.346",
-    pages = "3754--3763"
+    url = "https://arxiv.org/pdf/2009.10298.pdf"
 }
 ```
 
