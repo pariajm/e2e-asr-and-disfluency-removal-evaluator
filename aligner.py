@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 """
 This module implements a minimum edit distance algorithm for finding 
 an alignment between reference (which may contain disfluencies) and 
