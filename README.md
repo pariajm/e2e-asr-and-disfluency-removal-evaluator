@@ -46,17 +46,17 @@ Consider the following example! *Align 1* represents the alignment between the o
 The format of files passed to `--ref` and `--hyp` should be one sentence per line. All words in the reference and hypothesis files are lowercase, except for gold disfluent words in reference which are all capital letters. Check *ref* and *hyp* arrays in `aligner.py` to see the expected format.
 
 To align the reference and hypothesis transcripts and calculate WER using a standard ASR alginment algorithm:
-```py
+```console
 $ python3 main.py --ref /path/to/reference/file --hyp /path/to/hypothesis/file --mode s_align --result-path /to/save/aligments/and/scores
 ```
 To align the reference and hypothesis transcripts and calculate FER and DER using the modified ASR alginment algorithm:
-```py
+```console
 $ python3 main.py --ref /path/to/reference/file --hyp /path/to/hypothesis/file --mode m_align --result-path /to/save/aligments/and/scores
 ```
 
 To test the modified algorithm using the pre-defined reference and hypothesis sentences:
 
-```py
+```console
 $ python3 main.py --mode test
 ```
 
