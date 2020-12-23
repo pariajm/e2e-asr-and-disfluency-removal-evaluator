@@ -2,6 +2,15 @@
 
 Evaluation code for joint ASR and disfluency removal based on [End-to-End Speech Recognition and Disfluency Removal](https://www.aclweb.org/anthology/2020.findings-emnlp.186.pdf) from EMNLP Findings 2020.
 
+## Contents
+1. [Basic Overview](#task)
+2. [Abstract](#abstract)
+3. [Why Word Error Rate (WER) is insufficient?](#wer)
+4. [New Metrics](#new-metrics)
+5. [Requirement ](#requirement)
+6. [Align and Score](#align-and-score)
+7. [Contact](#contact)
+
 ### Basic Overview
 ![basic overview](img/basic.png "Basic overview of evaluating end-to-end ASR and disfluency removal systems")
 
@@ -17,9 +26,8 @@ Word Error Rate (WER) is a standard metric for evaluating ASR models; however, i
 
 The reference transcript contains both fluent and disfluent words, so a WER of zero on the full transcript means that the system returned all of the disfluent words as well as the fluent words, which is not what an integrated system should do (as it is expected to recognize all fluent words and discard all disfluencies in the output). This repo contains the code for calculating two new metrics called Fluent Error Rate (FER) and Disfluent Error Rate (DER) which are used to assess ASR outputs in terms of fluency and word recognition performance. 
 
-### Fluent Error Rate (FER) and Disfluent Error Rate (DER) 
-
-To overcome the limitations of WER, we use the standard WER evaluation to evaluate fluent and disfluent words separately. In this way, the quality of end-to-end model outputs is evaluated in terms of both fluency and word recognition. We calculate the word error rate on fluent words (which we call the fluent error rate or "FER") as the number of *substitutions*, *deletions* and *insertions* among fluent words divided by the total number of fluent words in the reference transcript. We define the word error rate on disfluent words (which we call the disfluent error rate or "DER") as anything other than a *deletion* (i.e. *substitutions*, *insertions* and *copies*) among disfluent words divided by the total number of disfluent words in the reference transcript. We calculate FER and DER using a modified ASR alginment algorithm which uses two slightly different sets of cost for aligning fluent and disfluent regions. Since many disfluencies are copies (e.g. "The the the student is here"), if the same cost is used to align fluent and disfluent words, the alignment will be ambiguous (i.e. there will be multiple alignments with the same cost). On the other hand, we expect an aligner to match ASR words to the fluent words in the reference and align null (i.e. deletions) with the disfluent ones in the reference. Therefore, a standard ASR alignment algorithm can lead to undesirable alignments in end-to-end ASR and disfluency removal models. As a solution, we suggest to use two slightly different sets of cost for aligning fluent and disfluent regions such that the aligner would bias away from selecting disfluent words. The new evaluation metrics and alignment weights are useful for aligning and evaluating any end-to-end systems trained to remove disfluency in the output, e.g. end-to-end speech translation and disfluency removal.
+### New Metrics
+To overcome the limitations of WER, we use the standard WER evaluation to evaluate fluent and disfluent words separately. In this way, the quality of end-to-end model outputs is evaluated in terms of both fluency and word recognition. We calculate the word error rate on fluent words (which we call the fluent error rate or **FER**) as the number of *substitutions*, *deletions* and *insertions* among fluent words divided by the total number of fluent words in the reference transcript. We define the word error rate on disfluent words (which we call the disfluent error rate or **DER**) as anything other than a *deletion* (i.e. *substitutions*, *insertions* and *copies*) among disfluent words divided by the total number of disfluent words in the reference transcript. We calculate FER and DER using a modified ASR alginment algorithm which uses two slightly different sets of cost for aligning fluent and disfluent regions. Since many disfluencies are copies (e.g. "The the the student is here"), if the same cost is used to align fluent and disfluent words, the alignment will be ambiguous (i.e. there will be multiple alignments with the same cost). On the other hand, we expect an aligner to match ASR words to the fluent words in the reference and align null (i.e. deletions) with the disfluent ones in the reference. Therefore, a standard ASR alignment algorithm can lead to undesirable alignments in end-to-end ASR and disfluency removal models. As a solution, we suggest to use two slightly different sets of cost for aligning fluent and disfluent regions such that the aligner would bias away from selecting disfluent words. The new evaluation metrics and alignment weights are useful for aligning and evaluating any end-to-end systems trained to remove disfluency in the output, e.g. end-to-end speech translation and disfluency removal.
  
  Operation | Fluent | Disfluent
  --- | --- | ---
