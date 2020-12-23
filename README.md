@@ -1,5 +1,4 @@
 ## End-to-end Speech Recognition and Disfluency Removal
-
 Evaluation code for joint ASR and disfluency removal based on [End-to-End Speech Recognition and Disfluency Removal](https://www.aclweb.org/anthology/2020.findings-emnlp.186.pdf) from EMNLP Findings 2020.
 
 ## Contents
@@ -7,7 +6,7 @@ Evaluation code for joint ASR and disfluency removal based on [End-to-End Speech
 2. [Abstract](#abstract)
 3. [Why Word Error Rate (WER) is insufficient?](#wer)
 4. [New Metrics](#new-metrics)
-5. [Requirement ](#requirement)
+5. [Requirement](#requirement)
 6. [Align and Score](#align-and-score)
 7. [Contact](#contact)
 
@@ -43,11 +42,9 @@ Consider the following example! "Align 1" represents the alignment between the o
 </p>
 
 ### Requirement 
-
 - Python 3.6 or higher (should work with python 2 as well)
 
 ### Align and Score
-
 The format of files passed to `--ref` and `--hyp` should be one sentence per line. All words in reference and hypothesis files should be in lowercase, except for GOLD DISFLUENT WORDS in reference which are presented in uppercase letters. 
 
 To align the reference and hypothesis transcripts and calculate WER using a standard ASR alginment algorithm:
@@ -69,7 +66,6 @@ $ python3 main.py --mode test
 ```
 
 ### Citation
-
 If you use the code, please cite the following paper:
 
 ```
@@ -88,5 +84,4 @@ If you use the code, please cite the following paper:
 ```
 
 ### Contact
-
 Paria Jamshid Lou <paria.jamshid-lou@hdr.mq.edu.au>
